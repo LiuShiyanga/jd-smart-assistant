@@ -1,0 +1,350 @@
+万邦淘宝/天猫获得淘宝商品详情 API 返回值说明
+
+item_get-获得淘宝商品详情
+taobao.item_get
+
+公共参数
+请求地址: https://api-gw.onebound.cn/taobao/item_get
+
+名称	类型	必须	描述
+key	String	是	调用key（必须以GET方式拼接在URL中）
+secret	String	是	调用密钥
+api_name	String	是	API接口名称（包括在请求地址中）[item_search,item_get,item_search_shop等]
+cache	String	否	[yes,no]默认yes，将调用缓存的数据，速度比较快
+result_type	String	否	[json,jsonu,xml,serialize,var_export]返回数据格式，默认为json，jsonu输出的内容中文可以直接阅读
+lang	String	否	[cn,en,ru]翻译语言，默认cn简体中文
+version	String	否	API版本
+
+
+=====================================================================
+请求参数
+请求参数：num_iid=652874751412&is_promotion=1
+
+参数说明：num_iid:淘宝商品ID
+is_promotion:是否获取取促销价
+
+响应参数
+Version: Date:2022-04-04
+
+名称	类型	必须	示例值	描述
+item	item[]	1		宝贝详情数据
+num_iid	Bigint	1	520813250866	宝贝ID
+title	String	1	三刃木折叠刀过安检创意迷你钥匙扣钥匙刀军刀随身多功能小刀包邮	宝贝标题
+desc_short	String	0		商品简介
+promotion_price	Int	0		优惠价
+price	Float	1	25.8	价格(当商品价格为0时，当前值为-1)，价格来自于未登入的划线价格，会有个别商品价格无法与页面匹配
+total_price	Float	0	0	
+suggestive_price	Float	0	0	
+orginal_price	String	0	25.80	原价
+nick	String	0	欢乐购客栈	掌柜昵称
+num	Int	0	3836	库存(没有精确，是模糊值)
+min_num	Int	0	0	最小购买数
+detail_url	String	0	http://item.taobao.com/item.htm?id=520813250866	宝贝链接
+pic_url	String	1	//gd2.alicdn.com/imgextra/i4/2596264565/TB2p30elFXXXXXQXpXXXXXXXXXX_!!2596264565.jpg	宝贝图片
+brand	String	0	三刃木	品牌名称
+brandId	Int	0	8879363	品牌ID
+rootCatId	Int	0	50013886	顶级分类ID
+cid	Int	1	50014822	
+crumbs	Mix	0	[]	导航菜单
+created_time	String	0		
+modified_time	String	0		
+delist_time	String	0		
+desc	String	0		商品详情
+desc_img	Mix	0	[]	商品详情图片
+item_imgs	Mix	0	item_imgs[]	商品图片
+item_weight	String	0		
+item_size	String	0		
+location	String	0		发货地
+express_fee	Float	0	0.00	快递费用
+ems_fee	Float	0		EMS费用
+post_fee	Float	0		物流费用
+shipping_to	String	0		发货至
+has_discount	Boolean	0	false	是否有优惠
+video	video[]	0		商品视频
+is_virtual	String	0		
+is_promotion	Boolean	0	false	是否促销
+props_name	String	0	1627207:1347647754:颜色分类:长方形带开瓶器+送工具刀卡+链子;1627207:1347647753:颜色分类:椭圆形带开瓶器+送工具刀卡+链子;	商品属性名。格式为pid1:vid1:name1:value1;pid1:vid2:name2:value2。
+prop_imgs	prop_imgs[]	0		商品属性图片列表
+property_alias	String	0	20509:9974422:36;1627207:28326:红色;20509:9975710:38;1627207:28326:红色;20509:9981357:40;1627207:28326:红色	销售属性值别名。格式为pid1:vid1:alias1;pid1:vid2:alia2。
+props	Mix	0	[{ "name": "产地","value": "中国" }]	商品属性
+total_sold	Int	0		
+skus	skus[]	0		商品规格信息列表
+seller_id	Int	0	2844096782	卖家ID
+sales	Int	0	138	销量
+shop_id	Int	0	151372205	店铺ID
+props_list	Mix	0	{20509:9974422: 尺码:36}	商品属性
+seller_info	seller_info[]	1		卖家信息
+tmall	Boolean	0	false	是否天猫
+error	String	0		错误信息
+warning	String	0		警告信息
+url_log	Mix	0	[]	
+favcount	Int	0	0	
+fanscount	Int	0	0	
+method	String	0	item_tmall:pget_item	
+promo_type	String	0		
+props_img	Mix	0	1627207:28326": "//img.alicdn.com/imgextra/i2/2844096782/O1CN01VrjpXt1zyCc9DvERE_!!2844096782.jpg	属性图片
+shop_item	Mix	0	[]	
+relate_items	Mix	0	[]	
+
+
+=====================================================================
+请求示例：
+# coding:utf-8
+"""
+Compatible for python2.x and python3.x
+requirement: pip install requests
+"""
+from __future__ import print_function
+import requests
+# 请求示例 url 默认请求参数已经做URL编码
+url = "https://api-gw.onebound.cn/taobao/item_get/?key=t5195916050&secret=6050e4e5&num_iid=652874751412&is_promotion=1"
+headers = {
+    "Accept-Encoding": "gzip",
+    "Connection": "close"
+}
+if __name__ == "__main__":
+    r = requests.get(url, headers=headers)
+    json_obj = r.json()
+    print(json_obj)
+
+
+=====================================================================
+响应示例：
+{
+    "item": {
+      "num_iid": "520813250866",
+      "title": "三刃木折叠刀过安检创意迷你钥匙扣钥匙刀军刀随身多功能小刀包邮",
+      "desc_short": "",
+      "price": 25.8,
+      "total_price": 0,
+      "suggestive_price": 0,
+      "orginal_price": "25.80",
+      "nick": "欢乐购客栈",
+      "num": "832",
+      "min_num": 0,
+      "detail_url": "http://item.taobao.com/item.htm?id=520813250866",
+      "pic_url": "//img.alicdn.com/imgextra/i4/2596264565/TB2p30elFXXXXXQXpXXXXXXXXXX_!!2596264565.jpg",
+      "brand": "三刃木",
+      "brandId": "4036703",
+      "rootCatId": "50013886",
+      "cid": "50014822",
+      "favcount": "4824",
+      "fanscount": "1469",
+      "crumbs": [],
+      "created_time": "",
+      "modified_time": "",
+      "delist_time": "",
+      "desc": "<p style=\"text-align:center;\"><span style=\"color:#ff0000;\"><span style=\"font-size:24.0px;\"><strong>小店所有产品都支持刻字，如需刻字，拍之前联系客服即可。</strong></span></span></p> <p style=\"text-align:center;\"><span style=\"font-size:18.0px;\"><strong>炎炎夏日来临，一把随身携带便携式的折叠小刀，<span style=\"color:#ff0000;\">带开瓶器功能</span>，喝酒不用愁。（钥匙刀不带开瓶器功能）</strong></span></p> <p style=\"text-align:center;\"><strong style=\"color:#000000;line-height:1.5;\"><span style=\"font-size:18.0px;\"><span style=\"line-height:18.0px;\">可以当吊牌项链装饰，也可当钥匙扣挂饰， 水果刀 开瓶器 户外防身.</span></span></strong></p> <p style=\"text-align:center;\"><strong style=\"line-height:1.5;\"><span style=\"font-size:24.0px;\">部分客户跟我们反映链子质量还不够好，因此小店已重新订购一批质量更好的链子赠送，<span style=\"color:#ff0000;\">加量不加价</span>，只为让你买的更舒心，戴的更放心。</span></strong></p> <p style=\"text-align:center;\"><span style=\"font-size:36.0px;\"><strong>购买就送<span style=\"color:#ff0000;\">工具刀卡和链子</span>一条</strong></span></p> <p style=\"text-align:center;\"><span style=\"font-size:36.0px;\"><strong><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i3/2596264565/TB2Sci2jXXXXXXFXpXXXXXXXXXX_!!2596264565.png\" size=\"611x442\"> </strong></span></p> <p style=\"text-align:center;\"><span style=\"font-size:18.0px;\"><strong>璀璨钻石套餐包含【SK016D钥匙扣+GJ019C折叠刀+GJ017D工具卡】</strong></span><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i3/2596264565/TB2wWohmXXXXXX8XXXXXXXXXXXX_!!2596264565.jpg\" size=\"750x600\" /></p> <p style=\"text-align:center;\"><span style=\"font-size:18.0px;\"><strong>超凡大师套餐包括【304不锈钢钥匙扣+GJ019C折叠刀+GJ017D工具卡】</strong></span><a href=\"//item.taobao.com/item.htm?id=520798805877\" target=\"_blank\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i4/2596264565/TB2_uiXnFXXXXXBXXXXXXXXXXXX_!!2596264565.jpg_q90.jpg\" style=\"float:none;margin:0.0px;\" /></a></p> <p style=\"text-align:center;\">&nbsp;</p> <p style=\"text-align:center;\"><span style=\"font-size:18.0px;\"><strong>最强王者套餐包括【钛钢钥匙扣+GJ019C折叠刀+GJ017D工具卡】<a href=\"//item.taobao.com/item.htm?id=520801586805\" target=\"_blank\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i4/2596264565/TB2Gm9xnFXXXXbmXXXXXXXXXXXX_!!2596264565.jpg_q90.jpg\" style=\"float:none;margin:0.0px;\" /></a> </strong></span></p> <p style=\"text-align:center;\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i3/2596264565/TB28Ox4b77OyuJjSsplXXXqdpXa_!!2596264565.jpg\" size=\"749x553\"> <img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i1/2596264565/TB2.mTddVXXXXbeXpXXXXXXXXXX_!!2596264565.jpg\" style=\"line-height:1.5;\" size=\"750x653\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i3/2596264565/TB21Ro.jl0lpuFjSszdXXcdxFXa_!!2596264565.jpg\" size=\"750x653\"> <img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i4/2596264565/TB2q9CelVXXXXcUXXXXXXXXXXXX_!!2596264565.jpg\" size=\"750x340\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i3/2596264565/TB21EX9lVXXXXaXXpXXXXXXXXXX_!!2596264565.jpg\" size=\"750x416\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i3/2596264565/TB2udCylVXXXXXgXXXXXXXXXXXX_!!2596264565.jpg_q90.jpg\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i1/2596264565/TB2EARxjB8lpuFjSspaXXXJKpXa_!!2596264565.jpg\" size=\"750x515\"> <img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i3/2596264565/TB2ssuwlVXXXXafXXXXXXXXXXXX_!!2596264565.jpg_q90.jpg\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i2/2596264565/TB2nAHqgyC9MuFjSZFoXXbUzFXa_!!2596264565.jpg\" size=\"750x606\"> <img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i3/2596264565/TB2ahCelVXXXXc_XXXXXXXXXXXX_!!2596264565.jpg_q90.jpg\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i3/2596264565/TB2w1JnjwRkpuFjy1zeXXc.6FXa_!!2596264565.jpg\" size=\"750x469\"> <img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i3/2596264565/TB2C902lVXXXXbnXpXXXXXXXXXX_!!2596264565.jpg_q90.jpg\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i1/2596264565/TB2sGR3lVXXXXblXpXXXXXXXXXX_!!2596264565.jpg_q90.jpg\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i1/2596264565/TB2ZBGxlVXXXXXMXXXXXXXXXXXX_!!2596264565.jpg_q90.jpg\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i1/2596264565/TB2MjWklVXXXXcaXXXXXXXXXXXX_!!2596264565.jpg_q90.jpg\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i2/2596264565/TB2UgV3lVXXXXbdXpXXXXXXXXXX_!!2596264565.jpg_q90.jpg\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i2/2596264565/TB2ip5XlVXXXXX2XpXXXXXXXXXX_!!2596264565.jpg_q90.jpg\"> <img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i2/2596264565/TB2sMTBdVXXXXXlXXXXXXXXXXXX_!!2596264565.jpg_q90.jpg\" style=\"line-height:1.5;\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i3/2596264565/TB2d3HfdVXXXXahXpXXXXXXXXXX_!!2596264565.jpg_q90.jpg\" style=\"line-height:1.5;\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i4/2596264565/TB2AVbBdVXXXXXkXXXXXXXXXXXX_!!2596264565.jpg_q90.jpg\" style=\"line-height:1.5;\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i2/2596264565/TB2nf_wdVXXXXaMXXXXXXXXXXXX_!!2596264565.jpg_q90.jpg\" style=\"line-height:1.5;\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i4/2596264565/TB2dLYddVXXXXbtXpXXXXXXXXXX_!!2596264565.jpg_q90.jpg\" style=\"line-height:1.5;\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i2/2596264565/TB2H1_adVXXXXbWXpXXXXXXXXXX_!!2596264565.jpg_q90.jpg\" style=\"line-height:1.5;\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i2/2596264565/TB2eBzsdVXXXXbuXXXXXXXXXXXX_!!2596264565.jpg_q90.jpg\" style=\"line-height:1.5;\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i4/2596264565/TB2dOTndVXXXXcCXXXXXXXXXXXX_!!2596264565.jpg_q90.jpg\" style=\"line-height:1.5;\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i2/2596264565/TB2fK2tdVXXXXbkXXXXXXXXXXXX_!!2596264565.jpg_q90.jpg\" style=\"line-height:1.5;\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i2/2596264565/TB29zjedVXXXXaFXpXXXXXXXXXX_!!2596264565.jpg_q90.jpg\" style=\"line-height:1.5;\"><img align=\"absmiddle\" src=\"//img.alicdn.com/imgextra/i3/2596264565/TB2i7rmdVXXXXcTXXXXXXXXXXXX_!!2596264565.jpg_q90.jpg\" style=\"line-height:1.5;\" /></p>",
+      "item_imgs": [
+        {
+          "url": "//img.alicdn.com/imgextra/i4/2596264565/TB2p30elFXXXXXQXpXXXXXXXXXX_!!2596264565.jpg"
+        },
+        {
+          "url": "//img.alicdn.com/imgextra/i2/2596264565/TB2onxRlVXXXXcDXpXXXXXXXXXX_!!2596264565.jpg"
+        },
+        {
+          "url": "//img.alicdn.com/imgextra/i1/2596264565/TB2a.x.lVXXXXXPXpXXXXXXXXXX_!!2596264565.jpg"
+        },
+        {
+          "url": "//img.alicdn.com/imgextra/i2/2596264565/TB2iWE6bKZkyKJjSszbXXblwFXa_!!2596264565.jpg"
+        },
+        {
+          "url": "//img.alicdn.com/imgextra/i4/2596264565/TB2j2cTXib_F1JjSZFzXXc6KXXa_!!2596264565.jpg"
+        }
+      ],
+      "item_weight": "0",
+      "item_size": "",
+      "location": "广东深圳",
+      "post_fee": "",
+      "express_fee": "0.00",
+      "ems_fee": "",
+      "shipping_to": "广东广州白云区",
+      "has_discount": "false",
+      "video": [],
+      "is_virtual": "",
+      "sample_id": "",
+      "is_promotion": "false",
+      "props_name": "1627207:1347647754:颜色分类:长方形带开瓶器+送工具刀卡+链子;1627207:1347647753:颜色分类:椭圆形带开瓶器+送工具刀卡+链子;1627207:1195392087:颜色分类:GJ018X钥匙刀+送工具刀卡+链子;1627207:1331112595:颜色分类:超凡大师套餐【送工具卡+链子】;1627207:1331112594:颜色分类:最强王者套餐【送工具卡+链子】;1627207:1331264247:颜色分类:璀璨钻石套餐【送工具卡+链子】",
+      "prop_imgs": {
+        "prop_img": [
+          {
+            "properties": "1627207:1347647754",
+            "url": "//img.alicdn.com/imgextra/i3/2596264565/TB2.XeblVXXXXXkXpXXXXXXXXXX_!!2596264565.jpg"
+          },
+          {
+            "properties": "1627207:1347647753",
+            "url": "//img.alicdn.com/imgextra/i4/2596264565/TB2dTrjdVXXXXXBXpXXXXXXXXXX_!!2596264565.jpg"
+          },
+          {
+            "properties": "1627207:1195392087",
+            "url": "//img.alicdn.com/imgextra/i2/2596264565/TB2j22kdVXXXXXdXpXXXXXXXXXX_!!2596264565.jpg"
+          },
+          {
+            "properties": "1627207:1331112595",
+            "url": "//img.alicdn.com/imgextra/i4/2596264565/TB2_uiXnFXXXXXBXXXXXXXXXXXX_!!2596264565.jpg"
+          },
+          {
+            "properties": "1627207:1331112594",
+            "url": "//img.alicdn.com/imgextra/i4/2596264565/TB2Gm9xnFXXXXbmXXXXXXXXXXXX_!!2596264565.jpg"
+          },
+          {
+            "properties": "1627207:1331264247",
+            "url": "//img.alicdn.com/imgextra/i3/2596264565/TB2wWohmXXXXXX8XXXXXXXXXXXX_!!2596264565.jpg"
+          }
+        ]
+      },
+      "property_alias": "1627207:1347647754:长方形带开瓶器+送工具刀卡+链子;1627207:1347647753:椭圆形带开瓶器+送工具刀卡+链子;1627207:1195392087:GJ018X钥匙刀+送工具刀卡+链子;1627207:1331112595:超凡大师套餐【送工具卡+链子】;1627207:1331112594:最强王者套餐【送工具卡+链子】;1627207:1331264247:璀璨钻石套餐【送工具卡+链子】",
+      "props": [
+        {
+          "name": "品牌",
+          "value": "三刃木"
+        },
+        {
+          "name": "产地",
+          "value": "中国"
+        },
+        {
+          "name": "颜色分类",
+          "value": "长方形带开瓶器+送工具刀卡+链子,椭圆形带开瓶器+送工具刀卡+链子,GJ018X钥匙刀+送工具刀卡+链子,超凡大师套餐【送工具卡+链子】,最强王者套餐【送工具卡+链子】,璀璨钻石套餐【送工具卡+链子】"
+        },
+        {
+          "name": "吊牌价",
+          "value": "46"
+        },
+        {
+          "name": "功能数量",
+          "value": "5个及以下"
+        },
+        {
+          "name": "货号",
+          "value": "GJ019C"
+        },
+        {
+          "name": "附加功能",
+          "value": "开瓶器,刀,螺丝刀,钥匙圈,其他"
+        }
+      ],
+      "total_sold": "1",
+      "skus": {
+        "sku": [
+          {
+            "price": "39",
+            "orginal_price": "39.00",
+            "properties": "1627207:1347647754",
+            "properties_name": "1627207:1347647754:颜色分类:长方形带开瓶器+送工具刀卡+链子",
+            "quantity": "104",
+            "sku_id": "3166598625985"
+          },
+          {
+            "price": "39",
+            "orginal_price": "39.00",
+            "properties": "1627207:1347647753",
+            "properties_name": "1627207:1347647753:颜色分类:椭圆形带开瓶器+送工具刀卡+链子",
+            "quantity": "370",
+            "sku_id": "3166598625984"
+          },
+          {
+            "price": "25.8",
+            "orginal_price": "25.80",
+            "properties": "1627207:1195392087",
+            "properties_name": "1627207:1195392087:颜色分类:GJ018X钥匙刀+送工具刀卡+链子",
+            "quantity": "34",
+            "sku_id": "3144644292458"
+          },
+          {
+            "price": "73.8",
+            "orginal_price": "73.80",
+            "properties": "1627207:1331112595",
+            "properties_name": "1627207:1331112595:颜色分类:超凡大师套餐【送工具卡+链子】",
+            "quantity": "157",
+            "sku_id": "3161300228970"
+          },
+          {
+            "price": "91.8",
+            "orginal_price": "91.80",
+            "properties": "1627207:1331112594",
+            "properties_name": "1627207:1331112594:颜色分类:最强王者套餐【送工具卡+链子】",
+            "quantity": "0",
+            "sku_id": "3161300228969"
+          },
+          {
+            "price": "63.8",
+            "orginal_price": "63.80",
+            "properties": "1627207:1331264247",
+            "properties_name": "1627207:1331264247:颜色分类:璀璨钻石套餐【送工具卡+链子】",
+            "quantity": "167",
+            "sku_id": "3161107666655"
+          }
+        ]
+      },
+      "seller_id": "2596264565",
+      "sales": "1",
+      "shop_id": "127203758",
+      "props_list": {
+        "1627207:1347647754": "颜色分类:长方形带开瓶器+送工具刀卡+链子",
+        "1627207:1347647753": "颜色分类:椭圆形带开瓶器+送工具刀卡+链子",
+        "1627207:1195392087": "颜色分类:GJ018X钥匙刀+送工具刀卡+链子",
+        "1627207:1331112595": "颜色分类:超凡大师套餐【送工具卡+链子】",
+        "1627207:1331112594": "颜色分类:最强王者套餐【送工具卡+链子】",
+        "1627207:1331264247": "颜色分类:璀璨钻石套餐【送工具卡+链子】"
+      },
+      "seller_info": {
+        "title": "欢乐购客栈",
+        "shop_name": "欢乐购客栈",
+        "sid": "127203758",
+        "zhuy": "//shop127203758.taobao.com",
+        "shop_type": "C",
+        "user_num_id": "2596264565",
+        "nick": "欢乐购客栈",
+       
+      },
+      "tmall": "false",
+      "error": "",
+      "warning": "",
+      "url_log": [],
+      "stuff_status": "",
+      "shopinfo": {
+        "shop_name": "欢乐购客栈",
+        "shop_id": "127203758"
+      },
+      "data_from": "mtop",
+      "method": "item_mtop:item_get",
+      "promo_type": null,
+      "props_img": {
+        "1627207:1347647754": "//img.alicdn.com/imgextra/i3/2596264565/TB2.XeblVXXXXXkXpXXXXXXXXXX_!!2596264565.jpg",
+        "1627207:1347647753": "//img.alicdn.com/imgextra/i4/2596264565/TB2dTrjdVXXXXXBXpXXXXXXXXXX_!!2596264565.jpg",
+        "1627207:1195392087": "//img.alicdn.com/imgextra/i2/2596264565/TB2j22kdVXXXXXdXpXXXXXXXXXX_!!2596264565.jpg",
+        "1627207:1331112595": "//img.alicdn.com/imgextra/i4/2596264565/TB2_uiXnFXXXXXBXXXXXXXXXXXX_!!2596264565.jpg",
+        "1627207:1331112594": "//img.alicdn.com/imgextra/i4/2596264565/TB2Gm9xnFXXXXbmXXXXXXXXXXXX_!!2596264565.jpg",
+        "1627207:1331264247": "//img.alicdn.com/imgextra/i3/2596264565/TB2wWohmXXXXXX8XXXXXXXXXXXX_!!2596264565.jpg"
+      },
+      "rate_grade": "",
+      "shop_item": [],
+      "relate_items": []
+    },
+    "secache": "d8bd20b8f0d9df02dd030dd374110240",
+    "secache_time": 1591841298,
+    "secache_date": "2020-06-11 10:08:18",
+    "translate_status": "error",
+    "translate_time": 0.001,
+    "language": {
+      "current_lang": "zh-CN",
+      "source_lang": "cn"
+    },
+    "error": "",
+    "reason": "",
+    "error_code": "0000",
+    "cache": 1,
+    "api_info": "today:7033 max:10000",
+    "execution_time": 0.211,
+    "server_time": "Beijing/2020-06-11 10:12:27",
+    "call_args": {
+      "num_iid": "520813250866",
+      "area_id": "440111"
+    },
+    "api_type": "taobao",
+    "translate_language": "zh-CN",
+    "translate_engine": "google_cn",
+    "server_memory": "8.26MB",
+    "request_id": "15ee1930b4e098"
+  }

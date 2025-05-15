@@ -1,0 +1,235 @@
+万邦淘宝/天猫获得淘宝商品评论 API 返回值说明
+
+item_review-获得淘宝商品评论
+taobao.item_review
+
+公共参数
+请求地址: https://api-gw.onebound.cn/taobao/item_review
+
+名称	类型	必须	描述
+key	String	是	调用key（必须以GET方式拼接在URL中）
+secret	String	是	调用密钥
+api_name	String	是	API接口名称（包括在请求地址中）[item_search,item_get,item_search_shop等]
+cache	String	否	[yes,no]默认yes，将调用缓存的数据，速度比较快
+result_type	String	否	[json,jsonu,xml,serialize,var_export]返回数据格式，默认为json，jsonu输出的内容中文可以直接阅读
+lang	String	否	[cn,en,ru]翻译语言，默认cn简体中文
+version	String	否	API版本
+
+
+=====================================================================
+请求参数
+请求参数：num_iid=600530677643&data=&page=1&version=1
+
+参数说明：num_iid:淘宝商品ID
+sort:排序 0：默认排序 ，1： 最新排序
+version:版本(默认日期字段格式为2025-01-12 11:16:35, 加了version=1则为2025年1月12日)
+
+响应参数
+Version: Date:
+
+名称	类型	必须	示例值	描述
+items	items[]	0		商品评论数据
+total_results	Int	0	29058	评论总数
+totalpage	Int	0	99	总页数
+page_size	Int	0	10	接口返回数量
+page	String	0	80	页码
+item	item[]	0		
+rate_content	String	0	此用户没有填写评论!	内容
+rate_date	Date	0	2024-12-22 20:58:43	日期
+pics	Mix	0		图片
+display_user_nick	String	0	2***飘	买家昵称
+auction_sku	String	0	尺码:NB	商品属性
+add_feedback	String	0	挺好的	追评内容
+add_feedback_images	Mix	0		追评图片
+video	String	0		视频地址
+
+
+=====================================================================
+请求示例：
+# coding:utf-8
+"""
+Compatible for python2.x and python3.x
+requirement: pip install requests
+"""
+from __future__ import print_function
+import requests
+# 请求示例 url 默认请求参数已经做URL编码
+url = "https://api-gw.onebound.cn/taobao/item_review/?key=t5195916050&secret=6050e4e5&num_iid=600530677643&data=&page=1&version=1"
+headers = {
+    "Accept-Encoding": "gzip",
+    "Connection": "close"
+}
+if __name__ == "__main__":
+    r = requests.get(url, headers=headers)
+    json_obj = r.json()
+    print(json_obj)
+
+
+=====================================================================
+响应示例：
+{
+  "items": {
+    "total_results": 29058,
+    "totalpage": 99,
+    "page_size": 10,
+    "page": "80",
+    "item": [
+      {
+        "rate_content": "性价比非常高，值得再次购买",
+        "rate_date": "2024-12-22 21:58:16",
+        "pics": [
+          "//img.alicdn.com/bao/uploaded/i3/O1CN01EJX8VU1lgR9K7MJH1_!!4611686018427384608-0-rate.jpg"
+        ],
+        "display_user_nick": "天***6",
+        "auction_sku": "尺码:NB",
+        "add_feedback": null,
+        "add_feedback_images": null,
+        "rate_id": 1259157383857,
+        "video": null
+      },
+      {
+        "rate_content": "透气性好，宝宝用了这款纸尿裤之后就没有出现红**了，也不会漏尿。",
+        "rate_date": "2024-12-22 21:42:54",
+        "pics": [
+          "//img.alicdn.com/bao/uploaded/i2/O1CN010j5Uot1MDhuX4lQkL_!!4611686018427386745-0-rate.jpg"
+        ],
+        "display_user_nick": "叶***7",
+        "auction_sku": "尺码:NB",
+        "add_feedback": null,
+        "add_feedback_images": null,
+        "rate_id": 1259083358259,
+        "video": null
+      },
+      {
+        "rate_content": "此用户没有填写评论!",
+        "rate_date": "2024-12-22 20:58:43",
+        "pics": [],
+        "display_user_nick": "2***飘",
+        "auction_sku": "尺码:NB",
+        "add_feedback": "挺好的",
+        "add_feedback_images": [
+          "//img.alicdn.com/bao/uploaded/i3/O1CN01DSBKGv1T3ofKtEJ5r_!!4611686018427387287-0-tbbala.jpg"
+        ],
+        "rate_id": 1259080326374,
+        "video": null
+      },
+      {
+        "rate_content": "一直购买 质量很好 宝宝用了没有红**",
+        "rate_date": "2024-12-22 20:52:11",
+        "pics": [],
+        "display_user_nick": "l***样",
+        "auction_sku": "尺码:NB",
+        "add_feedback": null,
+        "add_feedback_images": null,
+        "rate_id": 1258800240648,
+        "video": null
+      },
+      {
+        "rate_content": "正品验证：朋友推荐买的，nb码，留着坐月子时候给宝宝用",
+        "rate_date": "2024-12-22 20:36:19",
+        "pics": [
+          "//img.alicdn.com/bao/uploaded/i4/O1CN018DayU61a9xHo9oTYY_!!4611686018427386104-0-rate.jpg"
+        ],
+        "display_user_nick": "迎***年",
+        "auction_sku": "尺码:纸尿裤NB码+1元得奶清",
+        "add_feedback": null,
+        "add_feedback_images": null,
+        "rate_id": 1259152171593,
+        "video": null
+      },
+      {
+        "rate_content": "质量非常好，客服态度非常非常赞，有问题及时给解决了",
+        "rate_date": "2024-12-22 20:32:55",
+        "pics": [
+          "//img.alicdn.com/bao/uploaded/i2/O1CN01HXwZIK1Jg9fG8fKXx_!!4611686018427383585-0-tbbala.jpg"
+        ],
+        "display_user_nick": "糖***头",
+        "auction_sku": "尺码:S",
+        "add_feedback": null,
+        "add_feedback_images": null,
+        "rate_id": 1258929285631,
+        "video": null
+      },
+      {
+        "rate_content": "好用 一晚上不用换尿片推荐推荐",
+        "rate_date": "2024-12-22 20:15:42",
+        "pics": [
+          "//img.alicdn.com/bao/uploaded/i1/O1CN01o0CHfe2BVbnOL34mK_!!4611686018427384248-0-rate.jpg",
+          "//img.alicdn.com/bao/uploaded/i2/O1CN01wrdJmj2BVbnL5BNER_!!4611686018427384248-0-rate.jpg"
+        ],
+        "display_user_nick": "t***9",
+        "auction_sku": "尺码:M",
+        "add_feedback": null,
+        "add_feedback_images": null,
+        "rate_id": 1258797668839,
+        "video": null
+      },
+      {
+        "rate_content": "正品验证：牛 吸收性：牛 轻薄性：牛",
+        "rate_date": "2024-12-22 20:08:19",
+        "pics": [],
+        "display_user_nick": "d***4",
+        "auction_sku": "尺码:S",
+        "add_feedback": null,
+        "add_feedback_images": null,
+        "rate_id": 1258927617229,
+        "video": null
+      },
+      {
+        "rate_content": "买了很多牌子的试用装，还是这个最舒适，柔软没有红**，最关键的是不会侧漏，会长期使用，安排🤪",
+        "rate_date": "2024-12-22 19:59:16",
+        "pics": [
+          "//img.alicdn.com/bao/uploaded/i1/O1CN01kukzhP2FOyWJKfO5h_!!4611686018427386375-0-rate.jpg",
+          "//img.alicdn.com/bao/uploaded/i1/O1CN01woKvHU2FOyWQwMq8N_!!4611686018427386375-0-rate.jpg"
+        ],
+        "display_user_nick": "d***0",
+        "auction_sku": "尺码:NB",
+        "add_feedback": null,
+        "add_feedback_images": null,
+        "rate_id": 1259149723238,
+        "video": null
+      },
+      {
+        "rate_content": "吸收性：好 轻薄性：透气 尺码合适度：刚刚好",
+        "rate_date": "2024-12-22 19:53:42",
+        "pics": [
+          "//img.alicdn.com/bao/uploaded/i1/O1CN01T20YdC1ZvIc37rTg7_!!4611686018427383144-0-rate.jpg"
+        ],
+        "display_user_nick": "t***7",
+        "auction_sku": "尺码:M",
+        "add_feedback": null,
+        "add_feedback_images": null,
+        "rate_id": 1258796116440,
+        "video": null
+      }
+    ],
+    "_ddf": "cdy"
+  },
+  "secache": "6ad25527d1d13027d1043d1a3f5cb095",
+  "secache_time": 1740547674,
+  "secache_date": "2025-02-26 13:27:54",
+  "translate_status": "",
+  "translate_time": 0,
+  "language": {
+    "default_lang": "cn",
+    "current_lang": "cn"
+  },
+  "error": "",
+  "reason": "",
+  "error_code": "0000",
+  "cache": 0,
+  "api_info": "today:5939 max:100000 all[21768=5939+15829+0];expires:2026-01-21",
+  "execution_time": "2.756",
+  "server_time": "Beijing/2025-02-26 13:27:54",
+  "client_ip": "117.162.195.171",
+  "call_args": {
+    "num_iid": "613453019327",
+    "page": "80"
+  },
+  "api_type": "taobao",
+  "translate_language": "zh-CN",
+  "translate_engine": "baidu",
+  "server_memory": "3.73MB",
+  "request_id": "gw-3.67bea657498fd",
+  "last_id": "4107169594"
+}

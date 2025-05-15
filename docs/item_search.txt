@@ -1,0 +1,224 @@
+万邦淘宝/天猫按关键字搜索淘宝商品 API 返回值说明
+
+item_search-按关键字搜索淘宝商品
+taobao.item_search
+
+公共参数
+请求地址: https://api-gw.onebound.cn/taobao/item_search
+
+名称	类型	必须	描述
+key	String	是	调用key（必须以GET方式拼接在URL中）
+secret	String	是	调用密钥
+api_name	String	是	API接口名称（包括在请求地址中）[item_search,item_get,item_search_shop等]
+cache	String	否	[yes,no]默认yes，将调用缓存的数据，速度比较快
+result_type	String	否	[json,jsonu,xml,serialize,var_export]返回数据格式，默认为json，jsonu输出的内容中文可以直接阅读
+lang	String	否	[cn,en,ru]翻译语言，默认cn简体中文
+version	String	否	API版本
+
+
+=====================================================================
+请求参数
+请求参数：q=女装&start_price=0&end_price=0&page=1&cat=0&discount_only=&sort=&page_size=&seller_info=&nick=&ppath=&imgid=&filter=
+
+参数说明：q:搜索关键字
+page:页数【最大翻页100页】
+
+响应参数
+Version: Date:
+
+名称	类型	必须	示例值	描述
+items	items[]	0		按关键字搜索淘宝商品
+page	Int	0	1	页码
+real_total_results	Int	0	360000	商品数量
+total_results	Int	0	360000	商品数量
+page_size	Int	0	10	接口返回数量
+pagecount	Int	0	200	总页数
+item	item[]	0		商品详情数据
+title	String	0	高腰百搭羊羔绒阔腿裤冬季保暖	商品标题
+pic_url	String	0	https://img.alicdn.com/img/bao/uploaded/i4/O1CN01TpegE82EAUGWQD2JI_!!0-item_pic.jpg	商品图片
+promotion_price	Float	0	50.00	优惠价
+orginal_price	Float	0	50.00	原价
+price	Float	0	50.00	价格
+sales	Int	0	0	销量
+num_iid	Bigint	0	756775095301	商品ID
+seller_id	String	0	1704328704	卖家ID
+detail_url	String	0	https://item.taobao.com/item.htm?id=756775095301	商品链接
+item_weight_update	Int	0	0	
+
+
+=====================================================================
+请求示例：
+# coding:utf-8
+"""
+Compatible for python2.x and python3.x
+requirement: pip install requests
+"""
+from __future__ import print_function
+import requests
+# 请求示例 url 默认请求参数已经做URL编码
+url = "https://api-gw.onebound.cn/taobao/item_search/?key=t5195916050&secret=6050e4e5&q=女装&start_price=0&end_price=0&page=1&cat=0&discount_only=&sort=&page_size=&seller_info=&nick=&ppath=&imgid=&filter="
+headers = {
+    "Accept-Encoding": "gzip",
+    "Connection": "close"
+}
+if __name__ == "__main__":
+    r = requests.get(url, headers=headers)
+    json_obj = r.json()
+    print(json_obj)
+
+
+=====================================================================
+响应示例：
+{
+  "items": {
+    "page": "1",
+    "real_total_results": "360000",
+    "total_results": "360000",
+    "page_size": 10,
+    "pagecount": "200",
+    "_ddf": "szx",
+    "item": [
+      {
+        "title": "高腰百搭羊羔绒阔腿裤冬季保暖",
+        "pic_url": "https://img.alicdn.com/img/bao/uploaded/i4/O1CN01TpegE82EAUGWQD2JI_!!0-item_pic.jpg",
+        "promotion_price": "50.00",
+        "orginal_price": "50.00",
+        "price": "50.00",
+        "sales": 0,
+        "num_iid": "756775095301",
+        "seller_id": "1704328704",
+        "detail_url": "https://item.taobao.com/item.htm?id=756775095301"
+      },
+      {
+        "title": "德绒圆领打底衫短款修身内搭长袖T恤女秋冬纯色弧形小众百搭上衣",
+        "pic_url": "https://img.alicdn.com/img/bao/uploaded/i4/O1CN01xuzAuZ2LY21GBhlfE_!!3937219703-0-C2M.jpg",
+        "promotion_price": "44.40",
+        "orginal_price": "44.40",
+        "price": "44.40",
+        "sales": 0,
+        "num_iid": "825927041956",
+        "seller_id": "3937219703",
+        "detail_url": "https://item.taobao.com/item.htm?id=825927041956"
+      },
+      {
+        "title": "美式辣妹螺纹修身女打底衫长袖",
+        "pic_url": "https://img.alicdn.com/img/bao/uploaded/i4/O1CN010d2Jxj1ZOJwsXSEHg_!!862293184.jpg",
+        "promotion_price": "58.00",
+        "orginal_price": "58.00",
+        "price": "58.00",
+        "sales": 0,
+        "num_iid": "735775262176",
+        "seller_id": "862293184",
+        "detail_url": "https://item.taobao.com/item.htm?id=735775262176"
+      },
+      {
+        "title": "2024年新款高腰复古牛仔裤女秋季",
+        "pic_url": "https://img.alicdn.com/img/bao/uploaded/i4/O1CN01YfwUGX1h1tbd5rczJ_!!2206584264218-0-C2M.jpg",
+        "promotion_price": "59.85",
+        "orginal_price": "59.85",
+        "price": "59.85",
+        "sales": 0,
+        "num_iid": "837243885999",
+        "seller_id": "2206584264218",
+        "detail_url": "https://item.taobao.com/item.htm?id=837243885999"
+      },
+      {
+        "title": "【秋冬绝美可单穿慵懒小上衣】",
+        "pic_url": "https://img.alicdn.com/img/bao/uploaded/i4/O1CN01m6HRZH1zxkhIMd3OG_!!0-item_pic.jpg",
+        "promotion_price": "57.00",
+        "orginal_price": "57.00",
+        "price": "57.00",
+        "sales": 0,
+        "num_iid": "818387607863",
+        "seller_id": "2209434566781",
+        "detail_url": "https://item.taobao.com/item.htm?id=818387607863"
+      },
+      {
+        "title": "秋季新款复古高腰阔腿牛仔裤女宽松显瘦垂感拖地直筒长裤水洗做旧",
+        "pic_url": "https://img.alicdn.com/img/bao/uploaded/i4/O1CN01aJeIvR1mQEi3d7tnq_!!2206588314948-2-C2M.jpg",
+        "promotion_price": "74.85",
+        "orginal_price": "74.85",
+        "price": "74.85",
+        "sales": 0,
+        "num_iid": "819491929229",
+        "seller_id": "2206588314948",
+        "detail_url": "https://item.taobao.com/item.htm?id=819491929229"
+      },
+      {
+        "title": "美式复古豹纹牛仔裤女男夏季潮牌小众阔腿裤宽松垂感休闲长裤腰带",
+        "pic_url": "https://img.alicdn.com/img/bao/uploaded/i4/O1CN01fQC8Vc2LY21fSyrpo_!!3937219703-0-C2M.jpg",
+        "promotion_price": "55.80",
+        "orginal_price": "55.80",
+        "price": "55.80",
+        "sales": 0,
+        "num_iid": "797999211515",
+        "seller_id": "3937219703",
+        "detail_url": "https://item.taobao.com/item.htm?id=797999211515"
+      },
+      {
+        "title": "u领冬季白色内搭长袖秋季上衣女秋冬打底衫短款秋衣春秋修身t恤",
+        "pic_url": "https://img.alicdn.com/img/bao/uploaded/i4/O1CN01XfN4ys1I8Qr51Xkzq_!!0-item_pic.jpg",
+        "promotion_price": "47.75",
+        "orginal_price": "47.75",
+        "price": "47.75",
+        "sales": 0,
+        "num_iid": "835469595962",
+        "seller_id": "2216045650848",
+        "detail_url": "https://item.taobao.com/item.htm?id=835469595962"
+      },
+      {
+        "title": "【李佳锜推荐】高领内搭打底衫女",
+        "pic_url": "https://img.alicdn.com/img/bao/uploaded/i4/O1CN01X1jpKO1Xzl0WvcLqA_!!0-item_pic.jpg",
+        "promotion_price": "59.00",
+        "orginal_price": "59.00",
+        "price": "59.00",
+        "sales": 0,
+        "num_iid": "690366689843",
+        "seller_id": "3855402995",
+        "detail_url": "https://item.taobao.com/item.htm?id=690366689843"
+      },
+      {
+        "title": "高腰休闲宽松条纹运动裤",
+        "pic_url": "https://img.alicdn.com/img/bao/uploaded/i4/O1CN01yL3DXE1ToWxdKP8UP_!!0-item_pic.jpg",
+        "promotion_price": "42.78",
+        "orginal_price": "42.78",
+        "price": "42.78",
+        "sales": 0,
+        "num_iid": "841863957500",
+        "seller_id": "2132122429",
+        "detail_url": "https://item.taobao.com/item.htm?id=841863957500"
+      }
+    ],
+    "item_weight_update": 0
+  },
+  "error_code": "0000",
+  "reason": "ok",
+  "secache": "a8881ed5637e3c7e84f03acdc86be64f",
+  "secache_time": 1729489209,
+  "secache_date": "2024-10-21 13:40:09",
+  "translate_status": "",
+  "translate_time": 0,
+  "language": {
+    "default_lang": "cn",
+    "current_lang": "cn"
+  },
+  "error": "",
+  "cache": 0,
+  "api_info": "today:57 max:10000 all[2982=57+30+2895];expires:2030-10-30",
+  "execution_time": "1.911",
+  "server_time": "Beijing/2024-10-21 13:40:09",
+  "client_ip": "61.131.237.50",
+  "call_args": {
+    "q": "女装",
+    "start_price": "0",
+    "end_price": "0",
+    "page": "1",
+    "cat": "0"
+  },
+  "api_type": "taobao",
+  "translate_language": "zh-CN",
+  "translate_engine": "",
+  "server_memory": "4.39MB",
+  "request_id": "gw-3.6715e9377d64c",
+  "last_id": "3628047818"
+}
